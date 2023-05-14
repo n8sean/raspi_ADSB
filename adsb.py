@@ -1,15 +1,17 @@
+
 from opensky_api import OpenSkyApi
 import pandas as pd
 import os
 import time
-import yaml
+# import yaml
 from datetime import datetime
 from os.path import exists
+import config
 
 
 ## GLOBAL VARs ----
 single_ping = False
-use_credentials = True
+use_credentials = False
 process_minutes = 5*60		# total minutes to ping the airspace: (hours*minutes)
 ping_rate = 30				# ping every X seconds
 
@@ -85,11 +87,15 @@ col_names = ['icao24', 'callsign', 'origin_country', 'time_position', 'last_cont
 			]
 
 ## RETURN CREDENTIALS ----
-with open('config.yaml', 'r') as file:
-		adsb_srvc = yaml.safe_load(file)
+with open('config.py', 'r') as file:
+		# adsb_srvc = yaml.safe_load(file)
+		username = config.adsb_srvc['user']
+		password = config.adsb_srvc['password']
+
 
 if (use_credentials==True):
-	api = OpenSkyApi(adsb_srvc['user'], adsb_srvc['password'])		# use credentials
+	# api = OpenSkyApi(adsb_srvc['user'], adsb_srvc['password'])		# use credentials
+	api = openSkyApi(username, password)
 else:
 	api = OpenSkyApi()
 
