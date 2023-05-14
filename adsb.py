@@ -111,7 +111,7 @@ if (single_ping==True):
 		airspace = pd.DataFrame(columns=col_names)
 		airspace = get_states(airspace, states, col_names)
 
-		save_to_csv(airspace)
+		(airspace)
 
 	else:
 		print('Airspace is clear.')
