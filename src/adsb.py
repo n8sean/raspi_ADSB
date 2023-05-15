@@ -67,7 +67,9 @@ def save_to_csv(airspace):
 	#save a file or append new records to it
 	filename = '/airspace.csv'
 	filepath = '/data' + filename
-	cwd = os.getcwd() + filepath
+	# cwd = os.getcwd() #+ filepath
+	cwd = os.path.dirname(os.getcwd())
+	cwd = cwd + filepath
 	
 	if (exists(cwd)):
 		mode = 'a'
